@@ -1,0 +1,10 @@
+DELIMITER $$
+
+CREATE TRIGGER set_alert_date
+BEFORE INSERT ON medication
+FOR EACH ROW
+BEGIN
+    SET NEW.alert_date = DATE_SUB(NEW.expiry_date, INTERVAL 100 DAY);
+END$$
+
+DELIMITER ;
